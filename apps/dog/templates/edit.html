@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html>
+    <head>
+      <meta charset="UTF-8">
+      <title>TITLE</title>
+      <link rel="stylesheet" href="{% static 'mycss.css' %}">
+    </head>
+    <body>
+        <div>
+            <form action="/update/{{ dog.id }}" method = "POST">
+                {% csrf_token %}
+                <label for="name">NAME: <input type="text" name="name" id = "name" value = "{{ dog.name }}" placeholder = "{{ dog.name }}" /></label>
+                <label for="breed">BREED: <input type="text" name="breed" id="breed" value = "{{ dog.breed }}" placeholder ="{{ dog.breed }}"/></label>
+            <input type="submit" value = "update" /></form>
+            </form>
+        </div>
+    </body>
+</html>

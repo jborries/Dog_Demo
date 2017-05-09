@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html>
+    <head>
+      <meta charset="UTF-8">
+      <title>TITLE</title>
+      <link rel="stylesheet" href="{% static 'mycss.css' %}">
+    </head>
+    <body>
+        <div>
+            <form action = "/create" method = "POST">
+                {% csrf_token %}
+                <label for = "name"> NAME: <input type="text" name="name" id = "name"/></label>
+                <label for = "breed">BREED: <input type="text" name="breed" id= "breed"/></label>
+                <input type="submit" value="Create"/>
+            </form>
+            <form>
+                <table>
+                    <thead>
+                        <th>Dog Name</th>
+                        <th>Breed</th>
+                        <th>Created_at</th>
+                        <th>Modified_at</th>
+                        <th>Actions</th>
+                    </thead>
+                    <tbody>
+                    {% for b in dogs %}
+                        <tr>
+                            <td>{{ b.name }}</td>
+                            <td>{{ b.breed }}</td>
+                            <td>{{ b.created_at }}</td>
+                            <td>{{ b.updated_at }}</td>
+                            <td><a href="/edit/{{ b.id }}">EDIT</a> | <a href="/delete/{{ b.id }}">DELETE</a></td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </form>
+        </div>
+    </body>
+</html>
